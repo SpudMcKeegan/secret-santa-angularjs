@@ -1,3 +1,0 @@
-secretSanta.factory('allLists', function(){
-	
-});
