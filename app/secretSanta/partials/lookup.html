@@ -1,0 +1,8 @@
+<div>
+	<input ng-model="code" class="form-control" placeholder="What is your secret santa code?"></input>
+	<br />
+	<h3 ng-hide="code.length > 0">Search for the Secret Santa list using the above search bar. After you have found the correct list, click on it and enter the code the creator gave you.</h3>
+	<ul ng-show="code.length > 0">
+		<li ng-repeat="list in testList | filter:code | orderBy:'name'"><a href="#/signup/{{ list.id }}">{{ list.name }} - {{ list.creator }}</a></li>
+	</ul>
+</div>
