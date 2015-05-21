@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+	<meta charset="UTF-8">
+	<title>Secret Santa by fauxgeek.com</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container" ng-app="secretSanta">
+		<div ng-include="'app/secretSanta/partials/navView.html'"></div>
+		<ng-view></ng-view>
+	</div>
+
+	<!-- Javascript -->
+	<!-- angular -->
+	<script src="javascript/angular.js"></script>
+	<script src="javascript/angular-route.js"></script>
+
+	<!-- jQuery -->
+	<script src="javascript/jquery.min.js"></script>
+
+	<!-- custom code -->
+	<script type="text/javascript" src="javascript/testdata.js"></script>
+	<script src="app/secretSanta/secretSanta.js"></script>
+	<script src="app/secretSanta/directives.js"></script>
+	<script src="app/secretSanta/controllers.js"></script>
+	<script src="app/secretSanta/factories.js"></script>
+	<script src="app/routes.js"></script>
+</body>
+</html>
