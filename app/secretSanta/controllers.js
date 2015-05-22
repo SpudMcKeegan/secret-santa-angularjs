@@ -1,5 +1,6 @@
 secretSanta.controller('lookupCtrl', function($scope){
 	$scope.testList = testList;
+	console.log($scope.testList);
 });
 
 secretSanta.controller('createCtrl', ['$scope', function($scope){
@@ -11,6 +12,7 @@ secretSanta.controller('createCtrl', ['$scope', function($scope){
 
 	$scope.createSecretSantaList = function(){
 		newSecretSantaList = {
+			id: testList.length + 1,
 			name: $scope.name,
 			creator: $scope.creator,
 			code: $scope.code
