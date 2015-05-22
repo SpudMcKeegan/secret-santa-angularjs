@@ -19,7 +19,7 @@ secretSanta.controller('createCtrl', ['$scope', function($scope){
 		console.log(newSecretSantaList);
 		testList.push(newSecretSantaList);
 	}
-});
+}]);
 
 secretSanta.controller('signupCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
 	var entireList = testList;
@@ -30,4 +30,4 @@ secretSanta.controller('signupCtrl', ['$scope', '$routeParams', function($scope,
 			break;
 		}
 	}
-});
+}]);
