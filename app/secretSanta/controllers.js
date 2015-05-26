@@ -1,9 +1,19 @@
-secretSanta.controller('lookupCtrl', function($scope){
-	$scope.testList = testList;
-	console.log($scope.testList);
+secretSanta.controller('lookupCtrl', function(getData, $scope){	
+	params = {method: 'getAllLists'};
+
+	success = function(data){
+		$scope.lists = data;
+	}
+
+	fail = function (data){
+		console.log("fail");
+		console.log(data);
+	}
+
+	getData.grabLists(success, fail, params);
 });
 
-secretSanta.controller('createCtrl', ['$scope', function($scope){
+secretSanta.controller('createCtrl', function(getData, $scope, $window){
 	$scope.generateCode = function(){
 		var code = Math.ceil(Math.random() * 9999);
 		$scope.code = pad(code, 4);
@@ -12,24 +22,44 @@ secretSanta.controller('createCtrl', ['$scope', function($scope){
 
 	$scope.createSecretSantaList = function(){
 		newSecretSantaList = {
-			id: testList.length + 1,
+			method: 'createList',
 			name: $scope.name,
 			creator: $scope.creator,
 			code: $scope.code
 		}
 
-		console.log(newSecretSantaList);
+		success = function(data){
+			$window.location.href = '#/home';
+		}
+
+		fail = function(data){
+			alert('something broke');
+		}
+
+		getData.createList(success, fail, newSecretSantaList)
+
 		testList.push(newSecretSantaList);
 	}
-}]);
+});
 
-secretSanta.controller('signupCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
-	var entireList = testList;
+secretSanta.controller('signupCtrl', function(getData, $scope, $routeParams){
+	params = {
+		method: 'getSpecificList',
+		id: $routeParams.id
+	};
 
-	for (var j = 0; j < entireList.length; j++){
-		if(entireList[j].id == $routeParams.id){
-			$scope.listing = entireList[j];
-			break;
-		}
+	success = function(data){
+		$scope.listing = data;
 	}
-}]);
+
+	fail = function (data){
+		console.log("fail");
+		console.log(data);
+	}
+
+	getData.grabLists(success, fail, params);
+
+	$scope.joinListing = function(){
+		
+	}
+});

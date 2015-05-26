@@ -1,6 +1,6 @@
 <div>
 	Name: {{ listing.name }}<br />
 	Creator: {{ listing.creator }} <br />
-	<input value="{{ codeInput }}" /><br />
-	<input type="submit" value="submit" />
+	<input value="{{ codeInput }}" placeholder='Enter the code your friend provided you' /><br />
+	<input type="submit" value="submit" ng-click="joinListing()" />
 </div>

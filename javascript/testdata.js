@@ -1,4 +1,4 @@
-testList = [{
+var testList = [{
 	id: 1,
 	name: "Happy Holidays!!!1",
 	creator: "Kenny",
@@ -35,12 +35,12 @@ testList = [{
 	code: "3654"
 },{	
 	id: 8,
-	name: "Secret Santa",
+	name: "Secret Santa - friends",
 	creator: "Alex Miner",
 	code: "6663"
 },{	
 	id: 9,
-	name: "Secret Santa",
+	name: "Secret Santa - work",
 	creator: "Alex Miner",
 	code: "6549"
 },{	
