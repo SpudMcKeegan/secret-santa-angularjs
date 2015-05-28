@@ -1,4 +1,5 @@
-var testList = [{
+//No longer used.
+/*var testList = [{
 	id: 1,
 	name: "Happy Holidays!!!1",
 	creator: "Kenny",
@@ -53,4 +54,4 @@ var testList = [{
 	name: "I don't want to do this",
 	creator: "John",
 	code: "4569"
-}];
+}];*/

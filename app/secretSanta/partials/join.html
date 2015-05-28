@@ -1,0 +1,56 @@
+<div ng-show="joinForms">
+	<div ng-show="show">
+		<form name="codeForm">
+			<p>Name: {{ listing.name }}</p>
+			<p>Creator: {{ listing.creator }}<p>
+			<p>Number of Users: {{ listing.users }}</p>
+			<input 
+				name="userCode" 
+				ng-model="userCode" 
+				required 
+				ng-minlength="4" 
+				ng-maxlength="4" 
+				placeholder='Enter the code your friend provided you' />
+			<br /><br />
+			<input type="submit" value="submit" ng-click="checkCode()" />
+		</form>
+	</div>
+	<div ng-hide="show">
+		<form name="userForm">
+			<input 
+				type="text" 
+				name="userName" 
+				required ng-minlength="3" 
+				ng-maxlength="30" 
+				ng-model="userName" 
+				placeholder="Your Name" /> 
+			<span class="help-inline" ng-show="submitted && userForm.userName.$error.required">Required</span>
+			<span class="help-inline" ng-show="submitted && userForm.userName.$error.minlength">Name too short</span>
+			<span class="help-inline" ng-show="submitted && userForm.userName.$error.maxlength">Name too long</span>
+			<br/><br/>
+			<input 
+				type="email"
+				name="userEmail" 
+				required
+				ng-maxlength="100" 
+				ng-model="userEmail"
+				placeholder="Your Email Address" />
+			<span class="help-inline" ng-show="submitted && userForm.userEmail.$error.required">Required</span>
+	        <span class="help-inline" ng-show="submitted && userForm.userEmail.$error.email">Invalid email</span>
+			<br><br>
+			<input type="submit" value="submit" ng-click="joinList();" />
+	    </form>
+	</div>
+
+	<div ng-show="error">
+		<p class="warning">Wrong code, please try again.</p>
+	</div>
+
+	<div ng-show="ajaxFail">
+		<p class="warning">Something broke, please try again later.</p>
+	</div>
+</div>
+
+<div ng-show="joined">
+	<p class="warning">You have now joined {{ listing.creator }} Secret Santa! You'll recieve an email with the person who you need to buy a gift for when the creator finalizes the list and sends it.</p>
+</div>

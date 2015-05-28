@@ -10,7 +10,7 @@ secretSanta.controller('lookupCtrl', function(getData, $scope){
 		console.log(data);
 	}
 
-	getData.grabLists(success, fail, params);
+	getData.doAjax(success, fail, params);
 });
 
 secretSanta.controller('createCtrl', function(getData, $scope, $window){
@@ -36,13 +36,14 @@ secretSanta.controller('createCtrl', function(getData, $scope, $window){
 			alert('something broke');
 		}
 
-		getData.createList(success, fail, newSecretSantaList)
-
-		testList.push(newSecretSantaList);
+		getData.createList(success, fail, newSecretSantaList);
 	}
 });
 
-secretSanta.controller('signupCtrl', function(getData, $scope, $routeParams){
+secretSanta.controller('joinCtrl', ['getData', '$scope', '$routeParams', function(getData, $scope, $routeParams){
+	$scope.show = true;
+	$scope.joinForms = true;
+
 	params = {
 		method: 'getSpecificList',
 		id: $routeParams.id
@@ -57,9 +58,60 @@ secretSanta.controller('signupCtrl', function(getData, $scope, $routeParams){
 		console.log(data);
 	}
 
-	getData.grabLists(success, fail, params);
+	getData.doAjax(success, fail, params);
 
-	$scope.joinListing = function(){
-		
+	$scope.checkCode = function(){
+		console.log($scope.codeForm.$valid);
+		if($scope.codeForm.$valid){
+			params.method = 'checkCode';
+			params.userCode = $scope.userCode;
+
+			successCheck = function(data){
+				if(data.success){			
+					$scope.show = false;
+					$scope.error = false;
+				}else{
+					$scope.show = true;
+					$scope.error = true;
+				}
+			}
+
+			failCheck = function(data){
+				$scope.show = false;
+				$scope.error = false;
+				$scope.ajaxFail = true;	
+			}
+
+			getData.doAjax(successCheck, failCheck, params);
+		}
 	}
-});
+
+
+	$scope.joinList = function(){
+		$scope.submitted = true;
+		if($scope.userForm.$valid){
+			params.method = 'joinList';
+			params.userName = $scope.userName;
+			params.userEmail = $scope.userEmail;
+
+			successJoin = function(){
+				console.log('success');
+				$scope.joined = true;
+				$scope.joinForms = false;
+			}
+
+			failJoin = function(){
+				console.log('fail');
+				$scope.ajaxFail = true;
+			}
+
+			getData.doAjax(successJoin, failJoin, params);
+		}
+	}
+}]);
+
+secretSanta.controller('manageCtrl', ['getData', '$scope', '$routeParams', function(getData, $scope, $routeParams){
+	$scope.signin = true;
+
+	
+}]);

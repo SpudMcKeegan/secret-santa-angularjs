@@ -12,9 +12,13 @@ routes.config(['$routeProvider', function ($routeProvider){
 				controller: 'createCtrl',
 				templateUrl: 'app/secretSanta/partials/create.html'
 			})
-		.when('/signup/:id',{
-				controller: 'signupCtrl',
-				templateUrl: 'app/secretSanta/partials/signup.html'	
+		.when('/join/:id',{
+				controller: 'joinCtrl',
+				templateUrl: 'app/secretSanta/partials/join.html'	
 			})
-		.otherwise({redirectTo:'/home' });
+		.when('/manage/',{
+				controller: 'manageCtrl',
+				templateUrl: 'app/secretSanta/partials/manage.html'
+		})
+		.otherwise({ redirectTo:'/home' });
 }]);
