@@ -1,7 +1,19 @@
 <div ng-show='signin'>
-	<input type="text" ng-model="userName" required /><br>
-	<input type="name" ng-model="userCode" required /><br>
+	<input type="text" ng-model="userName" placeholder="Your name" required /><br><br>
+	<input type="name" ng-model="userCode" placeholder="List code" required /><br><br>
+	<input type="submit" ng-click="checkCodeAndName()" />
+</div>
+<div ng-show="warn">
+	The information you entered was incorrect.
 </div>
 <div ng-hide='signin'>
-	
+	<div>
+		<h3>{{ listing.name }}</h3>
+		<p>You currently have {{ listing.users.count() }} in your secret santa.</p>
+	</div>
+	<div>
+		<ul ng-repeat="user in listing.users | orderBy: name">
+			<li>{{user.name}} - {{user.email}} <span ng-click="removeUser( user.id )">X</span> </li>
+		</ul>
+	</div>
 </div>

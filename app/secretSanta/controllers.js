@@ -23,8 +23,9 @@ secretSanta.controller('createCtrl', function(getData, $scope, $window){
 	$scope.createSecretSantaList = function(){
 		newSecretSantaList = {
 			method: 'createList',
-			name: $scope.name,
-			creator: $scope.creator,
+			name: $scope.listName,
+			creator: $scope.creatorName,
+			creatorEmail: $scope.creatorEmail,
 			code: $scope.code
 		}
 
@@ -36,7 +37,7 @@ secretSanta.controller('createCtrl', function(getData, $scope, $window){
 			alert('something broke');
 		}
 
-		getData.createList(success, fail, newSecretSantaList);
+		getData.doAjax(success, fail, newSecretSantaList);
 	}
 });
 
@@ -113,5 +114,47 @@ secretSanta.controller('joinCtrl', ['getData', '$scope', '$routeParams', functio
 secretSanta.controller('manageCtrl', ['getData', '$scope', '$routeParams', function(getData, $scope, $routeParams){
 	$scope.signin = true;
 
-	
+	$scope.checkCodeAndName = function(){
+		params = {
+			method: 'checkOwner',
+			userName: $scope.userName,
+			userCode: $scope.userCode
+		};
+
+		success = function(data){
+			if(data.id !== 'null'){
+				$scope.signin = false;
+				$scope.listSecretSantaData(data.id);
+			}else{
+				$scope.warn = true;
+			}
+		}
+
+		fail = function(){
+			alert('You fucked up');
+		}
+
+		getData.doAjax(success, fail, params);
+	}
+
+	$scope.listSecretSantaData = function(id){
+		params = {
+			method: 'getFullListing',
+			listingId: id
+		}
+
+		success = function(data){
+			$scope.listing = data;
+		}
+
+		fail = function(){
+			alert('you fucked up');
+		}
+
+		getData.doAjax(success, fail, params);
+	}
+
+	$scope.removeUser = function(id){
+		console.log(id);
+	}
 }]);

@@ -1,10 +1,11 @@
 <div>
-	<input ng-model="code" class="form-control" placeholder="What is your secret santa code?"></input>
+	<input ng-model="code" class="form-control" placeholder="Name or Owner of the secret santa you are looking for"></input>
 	<br />
 	<h3 ng-hide="code.length > 0">Search for the Secret Santa list using the above search bar. After you have found the correct list, click on it and enter the code the creator gave you.</h3>
+	<h5 ng-show="code.length > 0">Secret Santa Listing - Creators Name (number of signups)</h5>
 	<ul ng-show="code.length > 0">
 		<li ng-repeat="list in lists | filter:code | orderBy:'name'">
-			<a href="#/join/{{ list.id }}">{{ list.name }} - {{ list.creator }}</a>
+			<a href="#/join/{{ list.id }}">{{ list.sslName }}</a> - {{ list.creatorName }} ({{ list.users }})
 		</li>
 	</ul>
 </div>

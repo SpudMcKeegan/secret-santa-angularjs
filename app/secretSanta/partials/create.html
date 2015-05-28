@@ -1,7 +1,9 @@
 <div>
-	<input type="text" placeholder="Name your Secret Santa List" class="form-control" ng-model="name"></input>
+	<input type="text" placeholder="Name your Secret Santa List" class="form-control" ng-model="listName"></input>
 	<br>
-	<input type="text" placeholder="What's your name?"  class="form-control" ng-model="creator">
+	<input type="text" placeholder="What's your name?"  class="form-control" ng-model="creatorName">
+	<br>
+	<input type="email" placeholder="What's your email?" class="form-control" ng-model="creatorEmail">
 	<br>
 	<button ng-click="generateCode()" ng-hide="clicked" /> Generate Code</button>
 	<span ng-show="clicked">{{ code }}</span>
