@@ -113,6 +113,8 @@ secretSanta.controller('joinCtrl', ['getData', '$scope', '$routeParams', functio
 
 secretSanta.controller('manageCtrl', ['getData', '$scope', '$routeParams', function(getData, $scope, $routeParams){
 	$scope.signin = true;
+	$scope.userName = "k";
+	$scope.userCode = "4233";
 
 	$scope.checkCodeAndName = function(){
 		params = {
@@ -137,7 +139,7 @@ secretSanta.controller('manageCtrl', ['getData', '$scope', '$routeParams', funct
 		getData.doAjax(success, fail, params);
 	}
 
-	$scope.listSecretSantaData = function(id){
+	$scope.listSecretSantaData = function(id, owner){
 		params = {
 			method: 'getFullListing',
 			listingId: id
@@ -155,6 +157,40 @@ secretSanta.controller('manageCtrl', ['getData', '$scope', '$routeParams', funct
 	}
 
 	$scope.removeUser = function(id){
-		console.log(id);
+		params = {
+			method: 'removeUser',
+			id: id
+		}
+
+		success = function(){
+			spliceArray($scope.listing.users, id);
+		}
+
+		fail = function(){
+			alert("Fail to complete, please try again");
+		}
+
+		getData.doAjax(success, fail, params);
 	}
+
+	$scope.toggleOwner = function(id, ownerVal){
+		params = {
+			method: 'toggleOwner',
+			id: id,
+			owner: ownerVal
+		}
+
+		if(ownerVal === '1'{
+			ownerVal = '2'
+		}else{
+			ownerVal = '1';
+		}
+
+		success = function(){}
+		fail = function(){}
+
+		getData.doAjax(success, fail, params);
+	}
+
+	$scope.deleteList
 }]);

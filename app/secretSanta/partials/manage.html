@@ -9,11 +9,16 @@
 <div ng-hide='signin'>
 	<div>
 		<h3>{{ listing.name }}</h3>
-		<p>You currently have {{ listing.users.count() }} in your secret santa.</p>
+		<p>You currently have {{ listing.users.length }} in your secret santa.</p>
 	</div>
 	<div>
 		<ul ng-repeat="user in listing.users | orderBy: name">
-			<li>{{user.name}} - {{user.email}} <span ng-click="removeUser( user.id )">X</span> </li>
+			<li data-binary="{{ list.owner }}" ng-class="{true: 'grey'}[user.owner === '2']">
+				{{user.name}} - {{user.email}}
+				<span ng-show="user.owner === '0'" ng-click="removeUser( user.id )">X</span>
+				<span ng-show="user.owner === '1' || user.owner === '2'" ng-click="toggleOwner( user.id, user.owner )">0</span>
+			</li>
 		</ul>
+		<p>Note: You can only deactivate the Owner from the list (yourself).</p>
 	</div>
 </div>
